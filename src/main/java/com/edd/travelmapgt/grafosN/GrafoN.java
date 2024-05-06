@@ -120,9 +120,6 @@ public class GrafoN {
                         case 5 -> {
                             pesoTotal += arco.peso.getDesgasteDistancia();
                         }
-                        case 6 -> {
-                            pesoTotal += arco.peso.getDesgasteDistancia();
-                        }
                         default -> throw new AssertionError();
                     }
                     break;

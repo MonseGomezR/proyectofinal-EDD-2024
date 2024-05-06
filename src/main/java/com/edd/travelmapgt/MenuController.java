@@ -100,6 +100,7 @@ public class MenuController {
     }
     
     public void buscarCaminos(int opcion, Object inicio, Object destino) {
+        List<List<Object>> caminos = actual.buscarCamino(inicio, destino, opcion);
         
     }
 

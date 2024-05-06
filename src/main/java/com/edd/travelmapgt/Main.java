@@ -17,8 +17,6 @@ public class Main extends javax.swing.JFrame {
 
     MenuController mc;
     CardLayout cl;
-    private float opacity = 0.0f;
-    private boolean increasing = true;
 
     public Main() {
         initComponents();
@@ -187,7 +185,20 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void accion4() {
+        int opcion = 0;
         
+        if(setRutaForm1.gasolina.isEnabled()) {
+            opcion = 1;
+        }else if (setRutaForm1.desgaste.isEnabled()) {
+            opcion = 2;
+        }else if(setRutaForm1.distancia.isEnabled()) {
+            opcion = 3;
+        }else if (setRutaForm1.gasoDist.isEnabled()) {
+            opcion = 4;
+        }else if(setRutaForm1.distancia.isEnabled()) {
+            opcion = 3;
+        }
+        mc.buscarCaminos(ERROR, this, this);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
