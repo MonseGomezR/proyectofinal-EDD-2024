@@ -2,12 +2,8 @@ package com.edd.travelmapgt;
 
 import com.edd.travelmapgt.grafosN.GrafoN;
 import com.edd.travelmapgt.grafosN.NodoGrafo;
-import com.edd.travelmapgt.swing.SetRutaForm;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -167,17 +163,13 @@ public class Main extends javax.swing.JFrame {
             if(menu1.buttonCaminando.isSelected()) {
                 setRutaForm1.gasoDist.setEnabled(false);
                 setRutaForm1.gasolina.setEnabled(false);
-                setRutaForm1.tiempoV.setEnabled(false);
                 
-                setRutaForm1.caminando.setEnabled(true);
                 setRutaForm1.desgaste.setEnabled(true);
                 setRutaForm1.desgasteDistancia.setEnabled(true);
             }else {
                 setRutaForm1.gasoDist.setEnabled(true);
                 setRutaForm1.gasolina.setEnabled(true);
-                setRutaForm1.tiempoV.setEnabled(true);
                 
-                setRutaForm1.caminando.setEnabled(false);
                 setRutaForm1.desgaste.setEnabled(false);
                 setRutaForm1.desgasteDistancia.setEnabled(false);
             }
@@ -187,18 +179,18 @@ public class Main extends javax.swing.JFrame {
     public void accion4() {
         int opcion = 0;
         
-        if(setRutaForm1.gasolina.isEnabled()) {
+        if(setRutaForm1.gasolina.isSelected()) {
             opcion = 1;
-        }else if (setRutaForm1.desgaste.isEnabled()) {
+        }else if (setRutaForm1.desgaste.isSelected()) {
             opcion = 2;
-        }else if(setRutaForm1.distancia.isEnabled()) {
+        }else if(setRutaForm1.distancia.isSelected()) {
             opcion = 3;
-        }else if (setRutaForm1.gasoDist.isEnabled()) {
+        }else if (setRutaForm1.gasoDist.isSelected()) {
             opcion = 4;
-        }else if(setRutaForm1.distancia.isEnabled()) {
-            opcion = 3;
+        }else if(setRutaForm1.desgasteDistancia.isSelected()) {
+            opcion = 5;
         }
-        mc.buscarCaminos(ERROR, this, this);
+        mc.buscarCaminos(opcion, setRutaForm1.cbOrigen.getSelectedItem(), setRutaForm1.cbDestino.getSelectedItem());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

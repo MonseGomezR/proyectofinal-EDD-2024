@@ -1,15 +1,8 @@
 package com.edd.travelmapgt;
 
-import com.edd.travelmapgt.grafos.GrafoDinamico;
-import com.edd.travelmapgt.grafos.Ruta;
 import com.edd.travelmapgt.grafosN.GrafoN;
-import com.edd.travelmapgt.grafosN.NodoGrafo;
 import com.edd.travelmapgt.grafosN.Peso;
-import com.edd.travelmapgt.swing.EspacioMapa;
-import java.awt.Dimension;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
@@ -17,8 +10,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -101,82 +92,20 @@ public class MenuController {
     
     public void buscarCaminos(int opcion, Object inicio, Object destino) {
         List<List<Object>> caminos = actual.buscarCamino(inicio, destino, opcion);
-        
-    }
-
-    /*public void crearGrafo(JPanel espacioMapa, JLabel mapa) {
-        
-        try {
-            JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null);
-            File file = fc.getSelectedFile();
-            GrafoDinamico grafo = new GrafoDinamico();
-            Scanner scanner = new Scanner(file);
-
-            int numOrigen = 0;
-            int numDestino = 0;
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] ordenRuta = line.split("\\|");
-                if (ordenRuta.length == 7) {
-                    Ruta ruta = new Ruta(Integer.parseInt(ordenRuta[2]), Integer.parseInt(ordenRuta[3]), Integer.parseInt(ordenRuta[4]), Integer.parseInt(ordenRuta[5]), Integer.parseInt(ordenRuta[6]));
-                    String origen = ordenRuta[0];
-                    String destino = ordenRuta[1];
-                    int distancia = ruta.getDistancia();
-
-                    numOrigen = grafo.buscarVertichePorNombre(origen);
-                    numDestino = grafo.buscarVertichePorNombre(destino);
-
-                    if (numOrigen == -1) {
-                        grafo.insertarVertice(origen);
-                        numOrigen = grafo.orden() - 1;
+        if (!caminos.isEmpty()) {
+            System.out.println("Todos los caminos encontrados:");
+            for (List<Object> camino : caminos) {
+                System.out.print("Camino: ");
+                for (int i = 0; i < camino.size(); i++) {
+                    System.out.print(camino.get(i));
+                    if (i < camino.size() - 1) {
+                        System.out.print(" -> ");
                     }
-
-                    if (numDestino == -1) {
-                        grafo.insertarVertice(destino);
-                        numDestino = grafo.orden() - 1;
-                    }
-
-                    grafo.insertarArista(numOrigen, numDestino, ruta);
-
-                    exito = true;
-
-                } else {
-                    System.err.println("La línea no tiene el formato esperado: " + line);
-                    JOptionPane.showConfirmDialog(null, "Error al leer el archivo, linea :" + line + "\nEl formato no es el esperado", "Creacion de Mapa", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
-                    break;
                 }
+                System.out.println();
             }
-            nodosActuales = new String[grafo.orden()];
-            for(int i = 0; i < grafo.orden(); i++) {
-                nodosActuales[i] = grafo.obtenerVertice(i).getVerticeName();
-            }
-            
-            scanner.close();
-            
-            String[] fileName= file.getName().split("\\.");
-            grafo.dibujarGraphviz(fileName[0]);
-            JOptionPane.showConfirmDialog(null, "Mapa creado con éxito", "Creacion de Mapa", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION, iconoSuccess);
-
-            ImageIcon grafico = new ImageIcon("./dotFiles/" + fileName[0] + ".png");
-            mapa.setIcon(grafico);
-            cargarTrafico();
-        } catch (FileNotFoundException e) {
-            JOptionPane.showConfirmDialog(null, "Error al crear el mapa, no se encontró el archivo", "Creacion de Mapa", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION, iconoSuccess);
-            e.printStackTrace();
+        } else {
+            System.out.println("No se encontraron caminos desde '" + inicio + "' hasta '" + destino + "'.");
         }
     }
-    
-    public void seleccionarDestino(JPanel panelOpciones, JPanel panelPrincipal) {
-        
-    }
-    
-    private void cargarTrafico() {
-        
-    }
-    
-    public String[] getNodosActuales() {
-        return nodosActuales;
-    }*/
 }

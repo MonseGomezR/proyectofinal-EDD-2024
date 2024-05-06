@@ -71,23 +71,19 @@
                           <Component id="espacioHoraEspecifica" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                           <Component id="distancia" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="gasolina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tiempoV" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="desgaste" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="caminando" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="gasoDist" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="desgasteDistancia" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,9 +118,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="gasolina" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="distancia" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tiempoV" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="desgaste" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="caminando" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="gasoDist" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="desgasteDistancia" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -246,7 +240,7 @@
         <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="gasolina">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="66" red="ff" type="rgb"/>
+              <Color blue="0" green="cc" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gasto de Gasolina"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -271,24 +265,10 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="tiempoV">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tiempo en Vehiculo"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Aldo the Apache" size="14" style="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
         <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="desgaste">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="cc" red="66" type="rgb"/>
+              <Color blue="33" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Desgaste Fisico"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -299,22 +279,11 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="caminando">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="cc" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tiempo Caminando"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Aldo the Apache" size="14" style="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
         <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="gasoDist">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Gasolina y Distancia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Aldo the Apache" size="14" style="0"/>
@@ -327,7 +296,7 @@
         <Component class="com.edd.travelmapgt.swing.RadioButtonCustom" name="desgasteDistancia">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="0" red="99" type="rgb"/>
+              <Color blue="99" green="cc" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Desgaste y Distancia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

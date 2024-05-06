@@ -340,7 +340,7 @@ public class Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_salirActionPerformed
 
     private void crearRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearRutaActionPerformed
-        
+        TravelMapGT.newMain.accion4();
     }//GEN-LAST:event_crearRutaActionPerformed
 
     private void buttonCaminandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminandoActionPerformed

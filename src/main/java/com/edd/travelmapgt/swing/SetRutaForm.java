@@ -24,13 +24,10 @@ public class SetRutaForm extends javax.swing.JPanel {
         rbHoras.add(rbHoraEspecifica);
         bgMejorRuta.add(gasolina);
         bgMejorRuta.add(distancia);
-        bgMejorRuta.add(tiempoV);
         bgMejorRuta.add(desgaste);
-        bgMejorRuta.add(caminando);
         bgMejorRuta.add(gasoDist);
         bgMejorRuta.add(desgasteDistancia);
 
-        caminando.setEnabled(false);
         desgaste.setEnabled(false);
         desgasteDistancia.setEnabled(false);
         anterior = "";
@@ -55,9 +52,7 @@ public class SetRutaForm extends javax.swing.JPanel {
         tagOrigen = new javax.swing.JLabel();
         gasolina = new com.edd.travelmapgt.swing.RadioButtonCustom();
         distancia = new com.edd.travelmapgt.swing.RadioButtonCustom();
-        tiempoV = new com.edd.travelmapgt.swing.RadioButtonCustom();
         desgaste = new com.edd.travelmapgt.swing.RadioButtonCustom();
-        caminando = new com.edd.travelmapgt.swing.RadioButtonCustom();
         gasoDist = new com.edd.travelmapgt.swing.RadioButtonCustom();
         desgasteDistancia = new com.edd.travelmapgt.swing.RadioButtonCustom();
 
@@ -116,7 +111,7 @@ public class SetRutaForm extends javax.swing.JPanel {
         tagOrigen.setForeground(new java.awt.Color(0, 0, 0));
         tagOrigen.setText("Origen:");
 
-        gasolina.setBackground(new java.awt.Color(255, 102, 0));
+        gasolina.setBackground(new java.awt.Color(255, 204, 0));
         gasolina.setText("Gasto de Gasolina");
         gasolina.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
@@ -124,22 +119,15 @@ public class SetRutaForm extends javax.swing.JPanel {
         distancia.setText("Distancia");
         distancia.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        tiempoV.setBackground(new java.awt.Color(255, 255, 51));
-        tiempoV.setText("Tiempo en Vehiculo");
-        tiempoV.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
-
-        desgaste.setBackground(new java.awt.Color(102, 204, 0));
+        desgaste.setBackground(new java.awt.Color(255, 255, 51));
         desgaste.setText("Desgaste Fisico");
         desgaste.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        caminando.setBackground(new java.awt.Color(0, 204, 153));
-        caminando.setText("Tiempo Caminando");
-        caminando.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
-
+        gasoDist.setBackground(new java.awt.Color(51, 204, 0));
         gasoDist.setText("Gasolina y Distancia");
         gasoDist.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        desgasteDistancia.setBackground(new java.awt.Color(153, 0, 204));
+        desgasteDistancia.setBackground(new java.awt.Color(0, 204, 153));
         desgasteDistancia.setText("Desgaste y Distancia");
         desgasteDistancia.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
@@ -169,21 +157,17 @@ public class SetRutaForm extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(espacioHoraEspecifica, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(147, 147, 147)
                         .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gasolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tiempoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(desgaste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(caminando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gasoDist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(desgasteDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,9 +194,7 @@ public class SetRutaForm extends javax.swing.JPanel {
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gasolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiempoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(desgaste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(caminando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gasoDist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(desgasteDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
@@ -245,7 +227,6 @@ public class SetRutaForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgMejorRuta;
-    public com.edd.travelmapgt.swing.RadioButtonCustom caminando;
     public javax.swing.JComboBox<String> cbDestino;
     public javax.swing.JComboBox<String> cbOrigen;
     public com.edd.travelmapgt.swing.RadioButtonCustom desgaste;
@@ -263,6 +244,5 @@ public class SetRutaForm extends javax.swing.JPanel {
     private javax.swing.JLabel tagHora;
     private javax.swing.JLabel tagHorario;
     private javax.swing.JLabel tagOrigen;
-    public com.edd.travelmapgt.swing.RadioButtonCustom tiempoV;
     // End of variables declaration//GEN-END:variables
 }
