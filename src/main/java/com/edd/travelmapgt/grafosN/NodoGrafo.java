@@ -6,7 +6,7 @@ package com.edd.travelmapgt.grafosN;
  */
 public class NodoGrafo {
     public Object dato;
-    ListaAdyacencia la;
+    public ListaAdyacencia la;
     public NodoGrafo siguiente;
 
     public NodoGrafo(Object dato) {

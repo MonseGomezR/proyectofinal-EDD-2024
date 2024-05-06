@@ -1,8 +1,11 @@
 package com.edd.travelmapgt;
 
+import com.edd.travelmapgt.grafosN.Arco;
 import com.edd.travelmapgt.grafosN.GrafoN;
+import com.edd.travelmapgt.grafosN.NodoGrafo;
 import com.edd.travelmapgt.grafosN.Peso;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
@@ -38,8 +41,8 @@ public class MenuController {
         espacioMapa.repaint();
     }
 
-    public GrafoN  crearGrafoNuevo(JPanel espacioMapa, JLabel mapa, boolean opcion) {
-        
+    public GrafoN crearGrafoNuevo(JPanel espacioMapa, JLabel mapa, boolean opcion) {
+
         try {
             JFileChooser jfc = new JFileChooser();
             jfc.showOpenDialog(null);
@@ -89,23 +92,46 @@ public class MenuController {
         grafico.getImage().flush();
         mapa.setIcon(grafico);
     }
-    
-    public void buscarCaminos(int opcion, Object inicio, Object destino) {
-        List<List<Object>> caminos = actual.buscarCamino(inicio, destino, opcion);
+
+    public void buscarCaminos(int opcion, Object inicio, Object destino, boolean caminando, JLabel mapa) {
+        List<List<Object>> caminos = actual.buscarCamino(inicio, destino, opcion, caminando);
+        List<NodoGrafo> mejor = new ArrayList<>();
+        List<NodoGrafo> peor = new ArrayList<>();
+        NodoGrafo aux;
+        String origen = "";
+        String finale = "";
         if (!caminos.isEmpty()) {
-            System.out.println("Todos los caminos encontrados:");
-            for (List<Object> camino : caminos) {
-                System.out.print("Camino: ");
-                for (int i = 0; i < camino.size(); i++) {
-                    System.out.print(camino.get(i));
-                    if (i < camino.size() - 1) {
-                        System.out.print(" -> ");
+            for (int i = 0; i < caminos.size(); i++) {
+                List<Object> camino = caminos.get(i);
+                if (i == 0) {
+                    for (int j = 0; j < camino.size() - 1; j++) {
+                        origen = camino.get(j).toString();
+                        finale = camino.get(j + 1).toString();
+                        aux = new NodoGrafo(origen);
+                        mejor.add(aux);
+                        aux.la.insertar(new Arco(finale));
+                    }
+                } else if (i == caminos.size() - 1) {
+                    for (int j = 0; j < camino.size() - 1; j++) {
+                        origen = camino.get(j).toString();
+                        finale = camino.get(j + 1).toString();
+                        aux = new NodoGrafo(origen);
+                        peor.add(aux);
+                        aux.la.insertar(new Arco(finale));
                     }
                 }
-                System.out.println();
             }
+            actual.dibujarGraphvizCamino(actualDoc, caminando, mejor, peor);
+            ImageIcon grafico = new ImageIcon("./dotFiles/" + actualDoc + "caminos.png");
+            
+            mapa.setIcon(null);
+            grafico.getImage().flush();
+            mapa.setIcon(grafico);
+            JOptionPane.showConfirmDialog(null, "Camino creado con éxito", "Creacion de Camino", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION, iconoSuccess);
+
         } else {
-            System.out.println("No se encontraron caminos desde '" + inicio + "' hasta '" + destino + "'.");
+            JOptionPane.showConfirmDialog(null, "No se encontraron caminos desde '" + inicio + "' hasta '" + destino + "'.", "Creacion de Camino", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+
         }
     }
 }

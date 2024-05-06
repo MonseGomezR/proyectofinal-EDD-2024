@@ -23,20 +23,19 @@ import javax.swing.Timer;
  * @author mgome
  */
 public class Menu extends javax.swing.JPanel {
-    
+
     final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     private MenuController mc;
 
     public Menu() {
         initComponents();
         setOpaque(false);
-        
-        
+
         cargarMapa.setUI(new StyledButtonUI());
         crearRuta.setUI(new StyledButtonUI());
         salir.setUI(new StyledButtonUI());
         limpiarMapa.setUI(new StyledButtonUI());
-        
+
         ActionListener timerListener = (ActionEvent e) -> {
             Date date = new Date();
             String time = timeFormat.format(date);
@@ -45,13 +44,12 @@ public class Menu extends javax.swing.JPanel {
         Timer timer = new Timer(1000, timerListener);
         timer.setInitialDelay(0);
         timer.start();
-        
+
         mc = new MenuController();
-        
-        
+
         buttonVehiculo.setSelected(true);
         buttonCaminando.setSelected(false);
-        
+
         bg.add(buttonCaminando);
         bg.add(buttonVehiculo);
     }
@@ -292,7 +290,9 @@ public class Menu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cargarMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarMapaMouseEntered
-        cargarMapa.setBackground(new Color(204, 245, 238));
+        if (cargarMapa.isEnabled()) {
+            cargarMapa.setBackground(new Color(204, 245, 238));
+        }
     }//GEN-LAST:event_cargarMapaMouseEntered
 
     private void cargarMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarMapaMouseExited
@@ -300,7 +300,7 @@ public class Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_cargarMapaMouseExited
 
     private void crearRutaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearRutaMouseEntered
-        if(crearRuta.isEnabled()) {
+        if (crearRuta.isEnabled()) {
             crearRuta.setBackground(new Color(204, 245, 238));
         }
     }//GEN-LAST:event_crearRutaMouseEntered
@@ -322,12 +322,12 @@ public class Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_cargarMapaActionPerformed
 
     private void limpiarMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarMapaMouseEntered
-                                   
+
         limpiarMapa.setBackground(new Color(204, 245, 238));
     }//GEN-LAST:event_limpiarMapaMouseEntered
 
     private void limpiarMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarMapaMouseExited
-                                   
+
         limpiarMapa.setBackground(Color.WHITE);
     }//GEN-LAST:event_limpiarMapaMouseExited
 
@@ -361,9 +361,10 @@ public class Menu extends javax.swing.JPanel {
         g2.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
         super.paintChildren(g);
     }
-    
+
     private int x;
     private int y;
+
     public void initMoving(JFrame fram) {
         panelMoving.addMouseListener(new MouseAdapter() {
             @Override
@@ -381,14 +382,12 @@ public class Menu extends javax.swing.JPanel {
         });
     }
 
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg;
     public com.edd.travelmapgt.swing.RadioButtonCustom buttonCaminando;
     public com.edd.travelmapgt.swing.RadioButtonCustom buttonVehiculo;
-    private javax.swing.JButton cargarMapa;
+    public javax.swing.JButton cargarMapa;
     public javax.swing.JButton crearRuta;
     private javax.swing.JPanel espacioHora;
     private javax.swing.JLabel hora;

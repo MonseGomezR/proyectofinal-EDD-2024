@@ -1,6 +1,5 @@
 package com.edd.travelmapgt;
 
-import com.edd.travelmapgt.grafos.*;
 import com.edd.travelmapgt.grafosN.GrafoN;
 import com.edd.travelmapgt.grafosN.Peso;
 import java.io.File;

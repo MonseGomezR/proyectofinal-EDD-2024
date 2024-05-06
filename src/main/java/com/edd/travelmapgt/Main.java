@@ -115,13 +115,14 @@ public class Main extends javax.swing.JFrame {
             setRutaForm1.cbDestino.addItem(aux.dato.toString());
             aux = aux.siguiente;
         }
-        
+
         cl.show(jPanel2, "2");
         espacioMapa1.repaint();
         espacioMapa1.updateUI();
         jPanel2.revalidate();
         jPanel2.repaint();
         menu1.crearRuta.setEnabled(true);
+        menu1.cargarMapa.setEnabled(false);
     }
 
     public void accion2() {
@@ -139,13 +140,16 @@ public class Main extends javax.swing.JFrame {
                 setRutaForm1.cbOrigen.removeItemAt(i);
             }
         }
-        
+
         for (int i = setRutaForm1.cbDestino.getItemCount() - 1; i >= 0; i--) {
             String item = setRutaForm1.cbDestino.getItemAt(i);
             if (!item.equals("Selecciona un Destino")) {
                 setRutaForm1.cbDestino.removeItemAt(i);
             }
         }
+        
+        menu1.crearRuta.setEnabled(false);
+        menu1.cargarMapa.setEnabled(true);
     }
 
     public void accion3() {
@@ -160,37 +164,42 @@ public class Main extends javax.swing.JFrame {
             espacioMapa1.updateUI();
             espacioMapa1.espacioMapa.updateUI();
             espacioMapa1.espacioMapa.repaint();
-            if(menu1.buttonCaminando.isSelected()) {
+            if (menu1.buttonCaminando.isSelected()) {
                 setRutaForm1.gasoDist.setEnabled(false);
                 setRutaForm1.gasolina.setEnabled(false);
-                
+
                 setRutaForm1.desgaste.setEnabled(true);
                 setRutaForm1.desgasteDistancia.setEnabled(true);
-            }else {
+            } else {
                 setRutaForm1.gasoDist.setEnabled(true);
                 setRutaForm1.gasolina.setEnabled(true);
-                
+
                 setRutaForm1.desgaste.setEnabled(false);
                 setRutaForm1.desgasteDistancia.setEnabled(false);
             }
         }
     }
-    
+
     public void accion4() {
         int opcion = 0;
-        
-        if(setRutaForm1.gasolina.isSelected()) {
+
+        if (setRutaForm1.gasolina.isSelected()) {
             opcion = 1;
-        }else if (setRutaForm1.desgaste.isSelected()) {
+        } else if (setRutaForm1.desgaste.isSelected()) {
             opcion = 2;
-        }else if(setRutaForm1.distancia.isSelected()) {
+        } else if (setRutaForm1.distancia.isSelected()) {
             opcion = 3;
-        }else if (setRutaForm1.gasoDist.isSelected()) {
+        } else if (setRutaForm1.gasoDist.isSelected()) {
             opcion = 4;
-        }else if(setRutaForm1.desgasteDistancia.isSelected()) {
+        } else if (setRutaForm1.desgasteDistancia.isSelected()) {
             opcion = 5;
         }
-        mc.buscarCaminos(opcion, setRutaForm1.cbOrigen.getSelectedItem(), setRutaForm1.cbDestino.getSelectedItem());
+        mc.buscarCaminos(opcion, setRutaForm1.cbOrigen.getSelectedItem(), setRutaForm1.cbDestino.getSelectedItem(), menu1.buttonCaminando.isSelected(), espacioMapa1.mapa);
+
+        espacioMapa1.espacioMapa.updateUI();
+        espacioMapa1.espacioMapa.repaint();
+        espacioMapa1.repaint();
+        espacioMapa1.updateUI();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

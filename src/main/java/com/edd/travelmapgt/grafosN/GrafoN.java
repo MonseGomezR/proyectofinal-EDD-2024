@@ -86,13 +86,13 @@ public class GrafoN {
         return null;
     }
 
-    public List<List<Object>> buscarCamino(Object inicio, Object destino, int tipo) {
+    public List<List<Object>> buscarCamino(Object inicio, Object destino, int tipo, boolean caminando) {
         List<List<Object>> todosLosCaminos = new ArrayList<>();
         Set<Object> visitados = new HashSet<>();
         List<Object> caminoActual = new ArrayList<>();
         List<List<Object>> caminosConPeso = new ArrayList<>();
         tipoBusqueda = tipo;
-        buscarCaminoR(inicio, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso);
+        buscarCaminoR(inicio, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso, caminando);
         caminosConPeso.sort(Comparator.comparingDouble(this::calcularPeso));
         return caminosConPeso;
     }
@@ -120,7 +120,8 @@ public class GrafoN {
                         case 5 -> {
                             pesoTotal += arco.peso.getDesgasteDistancia();
                         }
-                        default -> throw new AssertionError();
+                        default ->
+                            throw new AssertionError();
                     }
                     break;
                 }
@@ -130,7 +131,7 @@ public class GrafoN {
         return pesoTotal;
     }
 
-    private void buscarCaminoR(Object actual, Object destino, Set<Object> visitados, List<Object> caminoActual, List<List<Object>> todosLosCaminos, List<List<Object>> caminosConPeso) {
+    private void buscarCaminoR(Object actual, Object destino, Set<Object> visitados, List<Object> caminoActual, List<List<Object>> todosLosCaminos, List<List<Object>> caminosConPeso, boolean caminando) {
         visitados.add(actual);
         caminoActual.add(actual);
 
@@ -142,7 +143,17 @@ public class GrafoN {
             Arco arcoActual = nodoActual.la.primero;
             while (arcoActual != null) {
                 if (!visitados.contains(arcoActual.destino)) {
-                    buscarCaminoR(arcoActual.destino, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso);
+                    buscarCaminoR(arcoActual.destino, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso, caminando);
+                }
+                if (caminando) {
+                    NodoGrafo nodoDestino = encontrarNodo(arcoActual.destino);
+                    Arco arcoOpuesto = nodoDestino.la.primero;
+                    while (arcoOpuesto != null) {
+                        if (arcoOpuesto.destino.equals(actual) && !visitados.contains(nodoDestino.dato)) {
+                            buscarCaminoR(nodoDestino.dato, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso, caminando);
+                        }
+                        arcoOpuesto = arcoOpuesto.siguiente;
+                    }
                 }
                 arcoActual = arcoActual.siguiente;
             }
@@ -151,16 +162,37 @@ public class GrafoN {
         visitados.remove(actual);
         caminoActual.remove(caminoActual.size() - 1);
     }
-    
+
+    /*private void buscarCaminoR(Object actual, Object destino, Set<Object> visitados, List<Object> caminoActual, List<List<Object>> todosLosCaminos, List<List<Object>> caminosConPeso, boolean caminando) {
+        visitados.add(actual);
+        caminoActual.add(actual);
+
+        if (actual.equals(destino)) {
+            todosLosCaminos.add(new ArrayList<>(caminoActual));
+            caminosConPeso.add(new ArrayList<>(caminoActual));
+        } else {
+            NodoGrafo nodoActual = encontrarNodo(actual);
+            Arco arcoActual = nodoActual.la.primero;
+            while (arcoActual != null) {
+                if (!visitados.contains(arcoActual.destino)) {
+                    buscarCaminoR(arcoActual.destino, destino, visitados, caminoActual, todosLosCaminos, caminosConPeso, caminando);
+                }
+                arcoActual = arcoActual.siguiente;
+            }
+        }
+
+        visitados.remove(actual);
+        caminoActual.remove(caminoActual.size() - 1);
+    }*/
     public String obtenerCodigoDot(boolean dirigido) {
         String mostrar = "";
         String texto = "";
-        if(dirigido) {
-            texto+= " graph G\n";
-        }else {
-            texto+= " digraph G\n";
+        if (dirigido) {
+            texto += " graph G\n";
+        } else {
+            texto += " digraph G\n";
         }
-                texto +="""
+        texto += """
                        {
                        node [style = filled]
                        node [fillcolor = "#EEEEEE"]
@@ -173,13 +205,13 @@ public class GrafoN {
         if (!vacio()) {
             NodoGrafo aux = primero;
             while (aux != null) {
-                if(!aux.la.vacia()) {
+                if (!aux.la.vacia()) {
                     Arco aux2 = aux.la.primero;
                     while (aux2 != null) {
                         mostrar += aux.dato.toString();
-                        if(dirigido) {
+                        if (dirigido) {
                             mostrar += "--";
-                        }else {
+                        } else {
                             mostrar += "->";
                         }
                         mostrar += aux2.destino.toString() + "\n";
@@ -193,9 +225,9 @@ public class GrafoN {
             texto += mostrar;
         }
         return texto;
-    
+
     }
-    
+
     public boolean dibujarGraphviz(String nombreArchivo, boolean dirigido) {
         String finalFile = "./dotFiles/" + nombreArchivo;
         try {
@@ -205,8 +237,8 @@ public class GrafoN {
             escribirArchivo(finalPathDotFile, contenido);
 
             MutableGraph mutableGrap = new Parser().read(file);
-            if(dirigido) {
-                finalFile +="c";
+            if (dirigido) {
+                finalFile += "c";
             }
             Graphviz.fromGraph(mutableGrap).render(Format.PNG).toFile(new File(finalFile + ".png"));
 
@@ -216,7 +248,7 @@ public class GrafoN {
         }
 
     }
-    
+
     private void escribirArchivo(String ruta, String contenido) {
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -236,6 +268,103 @@ public class GrafoN {
         }
     }
 
+    public boolean dibujarGraphvizCamino(String nombreArchivo, boolean dirigido, List<NodoGrafo> mejorCamino, List<NodoGrafo> peorCamino) {
+        String finalFile = "./dotFiles/" + nombreArchivo + "caminos";
+        try {
+            String contenido = obtenerCodigoDotCamino(dirigido, mejorCamino, peorCamino);
+            String finalPathDotFile = "./dotFiles/" + nombreArchivo + "caminos.dot";
+            File file = new File(finalPathDotFile);
+            escribirArchivo(finalPathDotFile, contenido);
+
+            MutableGraph mutableGrap = new Parser().read(file);
+            if (dirigido) {
+                finalFile += "C";
+            }
+            Graphviz.fromGraph(mutableGrap).render(Format.PNG).toFile(new File(finalFile + ".png"));
+
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+
+    }
+
+    public String obtenerCodigoDotCamino(boolean dirigido, List<NodoGrafo> mejorCamino, List<NodoGrafo> peorCamino) {
+        String mostrar = "";
+        String texto = "";
+        boolean mejor = false;
+        boolean peor = false;
+        if (dirigido) {
+            texto += " graph G\n";
+        } else {
+            texto += " digraph G\n";
+        }
+        texto += """
+                       {
+                       node [style = filled]
+                       node [fillcolor = "#EEEEEE"]
+                       node [color = "#EEEEEE"]
+                       node [fontsize = 10]
+                       layout=fdp
+                       K=2
+                       """;
+
+        if (!vacio()) {
+            NodoGrafo aux = primero;
+            while (aux != null) {
+                if (!aux.la.vacia()) {
+                    Arco aux2 = aux.la.primero;
+                    while (aux2 != null) {
+                        mostrar += aux.dato.toString();
+                        if (dirigido) {
+                            mostrar += "--";
+                        } else {
+                            mostrar += "->";
+                        }
+
+                        mostrar += aux2.destino.toString();
+
+                        mejor = false;
+                        peor = false;
+
+                        for (int i = 0; i < mejorCamino.size(); i++) {
+                            if (mejorCamino.get(i).dato.toString().equals(aux.dato.toString())) {
+                                if (mejorCamino.get(i).la.primero.destino.toString().equals(aux2.destino.toString())) {
+                                    mejor = true;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < peorCamino.size(); i++) {
+                            if (peorCamino.get(i).dato.toString().equals(aux.dato.toString())) {
+                                if (peorCamino.get(i).la.primero.destino.toString().equals(aux2.destino.toString())) {
+                                    peor = true;
+                                }
+                            }
+                        }
+
+                        if (mejor && peor) {
+                            mostrar += "[color=\"teal:red\"]";
+                        } else if (mejor) {
+                            mostrar += "[color=\"teal\"]";
+                        } else if (peor) {
+                            mostrar += "[color=\"red\"]";
+                        }
+
+                        mostrar += "\n";
+
+                        aux2 = aux2.siguiente;
+                    }
+                }
+                aux = aux.siguiente;
+            }
+
+            mostrar += "}";
+            texto += mostrar;
+        }
+        return texto;
+
+    }
+
     public NodoGrafo getPrimero() {
         return primero;
     }
@@ -243,8 +372,6 @@ public class GrafoN {
     public NodoGrafo getUltimo() {
         return ultimo;
     }
-    
-    
 
     @Override
     public String toString() {
