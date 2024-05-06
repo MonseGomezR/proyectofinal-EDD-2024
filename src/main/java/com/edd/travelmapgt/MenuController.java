@@ -98,6 +98,10 @@ public class MenuController {
         grafico.getImage().flush();
         mapa.setIcon(grafico);
     }
+    
+    public void buscarCaminos(int opcion, Object inicio, Object destino) {
+        
+    }
 
     /*public void crearGrafo(JPanel espacioMapa, JLabel mapa) {
         

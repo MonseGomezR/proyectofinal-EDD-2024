@@ -127,7 +127,7 @@ public class Main extends javax.swing.JFrame {
         espacioMapa1.updateUI();
         jPanel2.revalidate();
         jPanel2.repaint();
-        espacioMapa1.
+        menu1.crearRuta.setEnabled(true);
     }
 
     public void accion2() {
@@ -166,7 +166,28 @@ public class Main extends javax.swing.JFrame {
             espacioMapa1.updateUI();
             espacioMapa1.espacioMapa.updateUI();
             espacioMapa1.espacioMapa.repaint();
+            if(menu1.buttonCaminando.isSelected()) {
+                setRutaForm1.gasoDist.setEnabled(false);
+                setRutaForm1.gasolina.setEnabled(false);
+                setRutaForm1.tiempoV.setEnabled(false);
+                
+                setRutaForm1.caminando.setEnabled(true);
+                setRutaForm1.desgaste.setEnabled(true);
+                setRutaForm1.desgasteDistancia.setEnabled(true);
+            }else {
+                setRutaForm1.gasoDist.setEnabled(true);
+                setRutaForm1.gasolina.setEnabled(true);
+                setRutaForm1.tiempoV.setEnabled(true);
+                
+                setRutaForm1.caminando.setEnabled(false);
+                setRutaForm1.desgaste.setEnabled(false);
+                setRutaForm1.desgasteDistancia.setEnabled(false);
+            }
         }
+    }
+    
+    public void accion4() {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

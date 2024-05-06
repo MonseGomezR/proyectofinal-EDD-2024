@@ -22,6 +22,17 @@ public class SetRutaForm extends javax.swing.JPanel {
         rbHoraEspecifica.setSelected(false);
         rbHoras.add(rbHoraActual);
         rbHoras.add(rbHoraEspecifica);
+        bgMejorRuta.add(gasolina);
+        bgMejorRuta.add(distancia);
+        bgMejorRuta.add(tiempoV);
+        bgMejorRuta.add(desgaste);
+        bgMejorRuta.add(caminando);
+        bgMejorRuta.add(gasoDist);
+        bgMejorRuta.add(desgasteDistancia);
+
+        caminando.setEnabled(false);
+        desgaste.setEnabled(false);
+        desgasteDistancia.setEnabled(false);
         anterior = "";
     }
 
@@ -42,10 +53,13 @@ public class SetRutaForm extends javax.swing.JPanel {
         tagDestino = new javax.swing.JLabel();
         cbOrigen = new javax.swing.JComboBox<>();
         tagOrigen = new javax.swing.JLabel();
-        porDistancia = new com.edd.travelmapgt.swing.RadioButtonCustom();
-        porTiempo = new com.edd.travelmapgt.swing.RadioButtonCustom();
-        radioButtonCustom4 = new com.edd.travelmapgt.swing.RadioButtonCustom();
-        radioButtonCustom5 = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        gasolina = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        distancia = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        tiempoV = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        desgaste = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        caminando = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        gasoDist = new com.edd.travelmapgt.swing.RadioButtonCustom();
+        desgasteDistancia = new com.edd.travelmapgt.swing.RadioButtonCustom();
 
         radioButtonCustom3.setText("radioButtonCustom1");
 
@@ -71,17 +85,27 @@ public class SetRutaForm extends javax.swing.JPanel {
         });
 
         tagHorario.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+        tagHorario.setForeground(new java.awt.Color(0, 0, 0));
         tagHorario.setText("Horario:");
 
         tagHora.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+        tagHora.setForeground(new java.awt.Color(0, 0, 0));
         tagHora.setText("Hora");
 
         espacioHoraEspecifica.setText("hh : mm : ss");
         espacioHoraEspecifica.setEnabled(false);
 
+        cbDestino.setBackground(new java.awt.Color(255, 255, 255));
+        cbDestino.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
+        cbDestino.setForeground(new java.awt.Color(0, 0, 0));
+
         tagDestino.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+        tagDestino.setForeground(new java.awt.Color(0, 0, 0));
         tagDestino.setText("Destino:");
 
+        cbOrigen.setBackground(new java.awt.Color(255, 255, 255));
+        cbOrigen.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
+        cbOrigen.setForeground(new java.awt.Color(0, 0, 0));
         cbOrigen.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbOrigenItemStateChanged(evt);
@@ -89,64 +113,89 @@ public class SetRutaForm extends javax.swing.JPanel {
         });
 
         tagOrigen.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+        tagOrigen.setForeground(new java.awt.Color(0, 0, 0));
         tagOrigen.setText("Origen:");
 
-        porDistancia.setText("por Gasto de Gasolina");
+        gasolina.setBackground(new java.awt.Color(255, 102, 0));
+        gasolina.setText("Gasto de Gasolina");
+        gasolina.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        porTiempo.setText("por Distancia");
+        distancia.setBackground(new java.awt.Color(255, 102, 102));
+        distancia.setText("Distancia");
+        distancia.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        radioButtonCustom4.setText("por Tiempo en Vehiculo");
+        tiempoV.setBackground(new java.awt.Color(255, 255, 51));
+        tiempoV.setText("Tiempo en Vehiculo");
+        tiempoV.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
-        radioButtonCustom5.setText("por Desgaste Fisico");
+        desgaste.setBackground(new java.awt.Color(102, 204, 0));
+        desgaste.setText("Desgaste Fisico");
+        desgaste.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+
+        caminando.setBackground(new java.awt.Color(0, 204, 153));
+        caminando.setText("Tiempo Caminando");
+        caminando.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+
+        gasoDist.setText("Gasolina y Distancia");
+        gasoDist.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
+
+        desgasteDistancia.setBackground(new java.awt.Color(153, 0, 204));
+        desgasteDistancia.setText("Desgaste y Distancia");
+        desgasteDistancia.setFont(new java.awt.Font("Aldo the Apache", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
-                        .addComponent(porTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(porDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioButtonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(tagOrigen)
                         .addGap(12, 12, 12)
                         .addComponent(cbOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(45, 45, 45)
                         .addComponent(tagDestino)
-                        .addGap(17, 17, 17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(tagHorario)))
-                .addGap(17, 17, 17)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbHoraEspecifica)
-                    .addComponent(rbHoraActual))
-                .addGap(31, 31, 31)
-                .addComponent(tagHora)
-                .addGap(26, 26, 26)
-                .addComponent(espacioHoraEspecifica, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(tagHorario)
+                        .addGap(17, 17, 17)
+                        .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbHoraEspecifica)
+                            .addComponent(rbHoraActual))
+                        .addGap(31, 31, 31)
+                        .addComponent(tagHora)
+                        .addGap(26, 26, 26)
+                        .addComponent(espacioHoraEspecifica, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gasolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tiempoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(desgaste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(caminando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gasoDist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(desgasteDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                    .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tagOrigen))
-                    .addComponent(cbOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                    .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tagDestino))
-                    .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(tagHorario))
@@ -157,13 +206,16 @@ public class SetRutaForm extends javax.swing.JPanel {
                     .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(espacioHoraEspecifica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tagHora)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(porDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(porTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioButtonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                    .addComponent(gasolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tiempoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desgaste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caminando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gasoDist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desgasteDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         add(panelBorder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 120));
@@ -193,15 +245,17 @@ public class SetRutaForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgMejorRuta;
+    public com.edd.travelmapgt.swing.RadioButtonCustom caminando;
     public javax.swing.JComboBox<String> cbDestino;
     public javax.swing.JComboBox<String> cbOrigen;
+    public com.edd.travelmapgt.swing.RadioButtonCustom desgaste;
+    public com.edd.travelmapgt.swing.RadioButtonCustom desgasteDistancia;
+    public com.edd.travelmapgt.swing.RadioButtonCustom distancia;
     private javax.swing.JTextField espacioHoraEspecifica;
+    public com.edd.travelmapgt.swing.RadioButtonCustom gasoDist;
+    public com.edd.travelmapgt.swing.RadioButtonCustom gasolina;
     private com.edd.travelmapgt.swing.PanelBorder panelBorder1;
-    private com.edd.travelmapgt.swing.RadioButtonCustom porDistancia;
-    private com.edd.travelmapgt.swing.RadioButtonCustom porTiempo;
     private com.edd.travelmapgt.swing.RadioButtonCustom radioButtonCustom3;
-    private com.edd.travelmapgt.swing.RadioButtonCustom radioButtonCustom4;
-    private com.edd.travelmapgt.swing.RadioButtonCustom radioButtonCustom5;
     private javax.swing.JRadioButton rbHoraActual;
     private javax.swing.JRadioButton rbHoraEspecifica;
     private javax.swing.ButtonGroup rbHoras;
@@ -209,5 +263,6 @@ public class SetRutaForm extends javax.swing.JPanel {
     private javax.swing.JLabel tagHora;
     private javax.swing.JLabel tagHorario;
     private javax.swing.JLabel tagOrigen;
+    public com.edd.travelmapgt.swing.RadioButtonCustom tiempoV;
     // End of variables declaration//GEN-END:variables
 }

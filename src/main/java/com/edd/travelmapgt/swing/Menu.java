@@ -138,6 +138,7 @@ public class Menu extends javax.swing.JPanel {
         cargarMapa.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
         cargarMapa.setForeground(new java.awt.Color(0, 0, 0));
         cargarMapa.setText("Cargar Mapa");
+        cargarMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cargarMapa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cargarMapaMouseEntered(evt);
@@ -156,6 +157,7 @@ public class Menu extends javax.swing.JPanel {
         crearRuta.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
         crearRuta.setForeground(new java.awt.Color(0, 0, 0));
         crearRuta.setText("Crear Ruta");
+        crearRuta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         crearRuta.setEnabled(false);
         crearRuta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -175,6 +177,7 @@ public class Menu extends javax.swing.JPanel {
         salir.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
         salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setText("Salir");
+        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 salirMouseEntered(evt);
@@ -193,6 +196,7 @@ public class Menu extends javax.swing.JPanel {
         limpiarMapa.setFont(new java.awt.Font("Aldo the Apache", 0, 18)); // NOI18N
         limpiarMapa.setForeground(new java.awt.Color(0, 0, 0));
         limpiarMapa.setText("Limpiar Mapa");
+        limpiarMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         limpiarMapa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 limpiarMapaMouseEntered(evt);
@@ -296,7 +300,9 @@ public class Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_cargarMapaMouseExited
 
     private void crearRutaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearRutaMouseEntered
-        crearRuta.setBackground(new Color(204, 245, 238));
+        if(crearRuta.isEnabled()) {
+            crearRuta.setBackground(new Color(204, 245, 238));
+        }
     }//GEN-LAST:event_crearRutaMouseEntered
 
     private void crearRutaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearRutaMouseExited

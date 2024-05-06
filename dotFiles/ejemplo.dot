@@ -1,0 +1,38 @@
+ digraph G
+{
+node [style = filled]
+node [fillcolor = "#EEEEEE"]
+node [color = "#EEEEEE"]
+node [fontsize = 10]
+layout=fdp
+K=2
+Quetzaltenango->Guatemala
+Guatemala->ElProgreso
+Guatemala->Jalapa
+SanMarcos->Quetzaltenango
+SanMarcos->Chiquimula
+AltaVerapaz->Izabal
+Izabal->AltaVerapaz
+Peten->Huehuetenango
+Peten->Izabal
+Huehuetenango->AltaVerapaz
+Quiche->Jutiapa
+Jutiapa->Suchitepequez
+Escuintla->Quiche
+Chiquimula->SanMarcos
+Zacapa->Retalhuleu
+Retalhuleu->Zacapa
+Retalhuleu->Jutiapa
+Retalhuleu->Quetzaltenango
+Suchitepequez->Jutiapa
+SantaRosa->Solola
+Solola->SantaRosa
+Solola->Jalapa
+Jalapa->Totonicapan
+Jalapa->Escuintla
+Totonicapan->SantaRosa
+ElProgreso->Totonicapan
+ElProgreso->Sacatepequez
+ElProgreso->Huehuetenango
+Sacatepequez->ElProgreso
+}
